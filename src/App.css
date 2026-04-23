@@ -14,9 +14,12 @@
  .featured-today-main{
     display: flex;
     width: 50rem;
+    max-width: 90vw;
     height: 41rem;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
  }
 
  .featured-today-main::-webkit-scrollbar{
@@ -54,8 +57,11 @@
     margin-top: 2rem;
     display: flex;
     width: 90%;
+    max-width: 90vw;
     overflow-x: scroll;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .top-main::-webkit-scrollbar{
@@ -85,6 +91,3 @@
     margin-left: -1.5rem;
     z-index: 2;
  }
-
- /* Big Carousel */
-

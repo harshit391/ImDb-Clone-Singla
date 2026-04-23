@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import Card from "./WhatToWatch/Card";
 
 const Top = ({ titleCard, url }) => {
@@ -7,22 +7,27 @@ const Top = ({ titleCard, url }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      setData(data.results.slice(0, 10));
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+        const result = await response.json();
+        setData((result.results || []).slice(0, 10));
+      } catch (error) {
+        console.error("Failed to fetch movies:", error);
+      }
     };
     fetchData();
-  }, []);
+  }, [url]);
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth*2; // Adjust scroll amount as needed
+      carouselRef.current.scrollLeft -= carouselRef.current.offsetWidth * 2;
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollLeft += carouselRef.current.offsetWidth*2; // Adjust scroll amount as needed
+      carouselRef.current.scrollLeft += carouselRef.current.offsetWidth * 2;
     }
   };
 
@@ -36,7 +41,7 @@ const Top = ({ titleCard, url }) => {
         <section className="top-main" ref={carouselRef}>
           <div className="top">
             {data.map((item, index) => (
-              <Card item={item} index={index + 1} myClass={"whatwatch"} key={index} />
+              <Card item={item} index={index + 1} myClass={"whatwatch"} key={item.id} />
             ))}
           </div>
         </section>

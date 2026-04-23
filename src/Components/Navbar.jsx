@@ -1,15 +1,17 @@
-import React from "react";
-
 const Nav = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    };
+
     return (
         <nav className="navbar navbar-expand-lg bg-black">
             <div className="container-fluid w-100 justify-content-center gap-5">
-                <a className="navbar-brand rounded" style={{backgroundColor:"orange", padding:"0.25rem 0.55rem", fontWeight:"700"}} href="/">ImDb</a>
+                <a className="navbar-brand rounded" style={{backgroundColor:"orange", padding:"0.25rem 0.55rem", fontWeight:"700"}} href="/">IMDb</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                
-                <form className="d-flex" role="search">
+
+                <form className="d-flex" role="search" onSubmit={handleSubmit}>
                     <div className="dropdown">
                         <button className="btn btn-secondary dropdown-toggle rounded-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             All

@@ -1,19 +1,22 @@
-import React from "react";
 import Nav from "./Components/Navbar";
 import "./App.css";
 import FeaturedToday from "./Components/FeaturedToday";
 import Top from "./Components/WhatToWatch";
 import People from "./Components/People";
+
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const BASE_URL = "https://api.themoviedb.org/3";
+
 const App = () => {
   return (
     <div>
       <Nav/>
       <div className="main-container">
-        <FeaturedToday/>
-        <People/>
+        <FeaturedToday apiKey={API_KEY} baseUrl={BASE_URL}/>
+        <People apiKey={API_KEY} baseUrl={BASE_URL}/>
       </div>
-      <Top titleCard={"Top 10 This Week"} url={"https://api.themoviedb.org/3/movie/popular?api_key=91c777dde03941e0f4e29b605c5fdcdf"}/>
-      <Top titleCard={"Now Playing"} url={"https://api.themoviedb.org/3/movie/now_playing?api_key=91c777dde03941e0f4e29b605c5fdcdf"}/>
+      <Top titleCard={"Top 10 This Week"} url={`${BASE_URL}/movie/popular?api_key=${API_KEY}`}/>
+      <Top titleCard={"Now Playing"} url={`${BASE_URL}/movie/now_playing?api_key=${API_KEY}`}/>
     </div>
   )
 }
